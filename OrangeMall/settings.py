@@ -34,7 +34,7 @@ PROJECT_APPS = [
     "apps.home",
     "apps.detail",
     "apps.account",
-    "apps.cart",
+    "apps.order",
     "apps.comment",
 ]
 
@@ -120,6 +120,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR,"static"),
 )
 
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
 
 ############ 缓存配置(开发时先不要使用缓存)#################
 CACHES = {
