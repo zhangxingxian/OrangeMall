@@ -78,7 +78,7 @@ class Member(models.Model):
 class MemberInfo(models.Model):
     info_id = models.AutoField("用户信息编号", primary_key=True)
     real_name = models.CharField("真是姓名", max_length=100, blank=True)
-    member_id = models.ForeignKey(Member, verbose_name="关联用户编号")
+    member_id = models.ForeignKey(Member, verbose_name="关联用户编号",db_column="member_id")
     sex = models.IntegerField("性别", default=0, choices=sex_choice, blank=True)
     birthday = models.DateTimeField("生日", blank=True, auto_now_add=True)
     member_img = models.ImageField("用户头像", upload_to="upload/member/", blank=True)
@@ -119,7 +119,7 @@ class MemberInfo(models.Model):
 
 class MemberLoc(models.Model):
     loc_id = models.AutoField("地址编号", primary_key=True)
-    member_id = models.ForeignKey(Member, verbose_name="关联用户编号")
+    member_id = models.ForeignKey(Member, verbose_name="关联用户编号",db_column="member_id")
     province = models.CharField("省份", max_length=200)
     city = models.CharField("城市", max_length=200)
     detail_loc = models.TextField("地址详情")
@@ -134,8 +134,8 @@ class MemberLoc(models.Model):
 
 class Review(models.Model):
     review_id = models.AutoField("评论编号", primary_key=True)
-    member_id = models.ForeignKey(Member, verbose_name="关联用户编号")
-    goods_id = models.ForeignKey(Goods, verbose_name="关联商品编号")
+    member_id = models.ForeignKey(Member, verbose_name="关联用户编号",db_column="member_id")
+    goods_id = models.ForeignKey(Goods, verbose_name="关联商品编号",db_column="goods_id")
     conten = models.TextField("用户详情")
     image = models.ImageField("图片", upload_to="media/review/")
     create_date = models.DateTimeField(auto_now_add=True)
@@ -161,8 +161,8 @@ class Review(models.Model):
 # 订单编号按照时间戳+用户ID+随机数
 class Order(models.Model):
     order_id = models.CharField("订单编号", max_length=100, primary_key=True)
-    member_id = models.ForeignKey(Member, verbose_name="关联用户编号")
-    goods_id = models.ForeignKey(Goods, verbose_name="关联商品编号")
+    member_id = models.ForeignKey(Member, verbose_name="关联用户编号",db_column="member_id")
+    goods_id = models.ForeignKey(Goods, verbose_name="关联商品编号",db_column="goods_id")
     count = models.IntegerField("数量")
     status = models.IntegerField("订单状态", choices=order_status_choice)
     create_date = models.DateTimeField(auto_now_add=True)
@@ -176,8 +176,8 @@ class Order(models.Model):
 
 class ShopCar(models.Model):
     car_id = models.AutoField("购物车编号", primary_key=True)
-    member_id = models.ForeignKey(Member, verbose_name="关联用户编号")
-    goods_id = models.ForeignKey(Goods, verbose_name="关联商品编号")
+    member_id = models.ForeignKey(Member, verbose_name="关联用户编号",db_column="member_id")
+    goods_id = models.ForeignKey(Goods, verbose_name="关联商品编号",db_column="goods_id")
     count = models.IntegerField("数量")
     create_date = models.DateTimeField(auto_now_add=True)
     is_delete = models.BooleanField(default=False)
@@ -190,7 +190,7 @@ class ShopCar(models.Model):
 
 class Coupon(models.Model):
     coupon_id = models.AutoField("优惠券编号", primary_key=True)
-    member_id = models.ForeignKey(Member, verbose_name="关联用户编号")
+    member_id = models.ForeignKey(Member, verbose_name="关联用户编号",db_column="member_id")
     value = models.DecimalField("金额", max_digits=7, decimal_places=2)
     begin_date = models.DateTimeField("开始时间")
     invalid_date = models.DateTimeField("失效时间")
@@ -205,8 +205,8 @@ class Coupon(models.Model):
 
 class Collection(models.Model):
     collection_id = models.AutoField("收藏编号", primary_key=True)
-    member_id = models.ForeignKey(Member, verbose_name="关联用户编号")
-    goods_id = models.ForeignKey(Goods, verbose_name="关联商品编号")
+    member_id = models.ForeignKey(Member, verbose_name="关联用户编号",db_column="member_id")
+    goods_id = models.ForeignKey(Goods, verbose_name="关联商品编号",db_column="goods_id")
     create_date = models.DateTimeField("收藏时间", auto_now_add=True)
     is_delete = models.BooleanField(default=False)
 
@@ -246,7 +246,7 @@ class Message(models.Model):
 
 class BankCard(models.Model):
     card_id = models.AutoField("银行卡编号", primary_key=True)
-    member_id = models.ForeignKey(Member, verbose_name="关联用户编号")
+    member_id = models.ForeignKey(Member, verbose_name="关联用户编号",db_column="member_id")
     card_num = models.CharField("银行卡号", max_length=30)
     card_type = models.IntegerField("类型", choices=card_type_choice)
     create_data = models.DateTimeField(auto_now_add=True)

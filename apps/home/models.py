@@ -79,7 +79,7 @@ class GoodsDetail(models.Model):
 
 class GoodsSpu(models.Model):
     spu_id = models.AutoField("规格编号",primary_key=True)
-    goods_id = models.ForeignKey(Goods,verbose_name="关联商品编号")
+    goods_id = models.ForeignKey(Goods,verbose_name="关联商品编号",db_column="goods_id")
     goods_specs = models.TextField("商品选择参数")
     stock = models.CharField("库存",max_length=100)
     goods_price = models.CharField("商品价格",max_length=100)
