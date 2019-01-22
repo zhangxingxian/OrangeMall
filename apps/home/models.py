@@ -36,7 +36,7 @@ class Goods(models.Model):
     cate_id = models.ForeignKey(Category, verbose_name="关联分类编号", db_column='cate_id')
     creator_name = models.CharField("商家名称", max_length=200)
     goods_name = models.CharField("商品名称", max_length=200)
-    band_name = models.CharField("品牌名称 ", max_length=200)
+    brand_name = models.CharField("品牌名称 ", max_length=200)
     create_date = models.DateTimeField(auto_now_add=True)
     is_delete = models.BooleanField(default=False)
 
@@ -53,7 +53,6 @@ class GoodsDetail(models.Model):
     detail_id = models.AutoField("编号", primary_key=True)
     goods_id = models.ForeignKey(Goods, verbose_name="关联商品编号", db_column="cate_id")
     sale_state = models.IntegerField("上架状态", choices=state_choice)
-    desc = models.TextField("详情")
     goods_params = models.TextField("商品参数")
     title = models.CharField("标题", max_length=200)
     image = models.ImageField("图片", max_length=100, upload_to="upload/goods/", blank=True)

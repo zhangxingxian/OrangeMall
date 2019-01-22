@@ -48,10 +48,10 @@ card_type_choice = (
 class Member(models.Model):
     member_id = models.AutoField("用户编号", primary_key=True)
     email = models.CharField("邮箱", max_length=50)
-    nickname = models.CharField("昵称", max_length=100, blank=True)
+    nickname = models.CharField("昵称", max_length=100, blank=True,null=True)
     login_password = models.CharField("密码", max_length=50)
-    phone = models.CharField("手机号", max_length=20, blank=True)
-    is_active = models.BooleanField("激活状态", default=False, )
+    phone = models.CharField("手机号", max_length=20, blank=True,null=True)
+    is_active = models.BooleanField("激活状态", default=False )
     is_delete = models.BooleanField(default=False)
 
     def make_password(self, password):
@@ -77,12 +77,12 @@ class Member(models.Model):
 
 class MemberInfo(models.Model):
     info_id = models.AutoField("用户信息编号", primary_key=True)
-    real_name = models.CharField("真是姓名", max_length=100, blank=True)
+    real_name = models.CharField("真是姓名", max_length=100, blank=True,null=True)
     member_id = models.ForeignKey(Member, verbose_name="关联用户编号",db_column="member_id")
     sex = models.IntegerField("性别", default=0, choices=sex_choice, blank=True)
     birthday = models.DateTimeField("生日", blank=True, auto_now_add=True)
-    member_img = models.ImageField("用户头像", upload_to="upload/member/", blank=True)
-    pay_password = models.CharField(max_length=50)
+    member_img = models.ImageField("用户头像", upload_to="upload/member/", blank=True,null=True)
+    pay_password = models.CharField(max_length=50,null=True)
     balance = models.DecimalField("余额", max_digits=7, decimal_places=2, default=0, blank=True)
     points = models.IntegerField("积分", default=0, blank=True)
     is_vip = models.IntegerField("会员等级", default=0, choices=vip_choice)
@@ -136,7 +136,7 @@ class Review(models.Model):
     review_id = models.AutoField("评论编号", primary_key=True)
     member_id = models.ForeignKey(Member, verbose_name="关联用户编号",db_column="member_id")
     goods_id = models.ForeignKey(Goods, verbose_name="关联商品编号",db_column="goods_id")
-    conten = models.TextField("用户详情")
+    content = models.TextField("用户详情")
     image = models.ImageField("图片", upload_to="media/review/")
     create_date = models.DateTimeField(auto_now_add=True)
     is_delete = models.BooleanField(default=False)
