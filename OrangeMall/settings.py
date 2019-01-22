@@ -179,7 +179,14 @@ EMAIL_HOST_PASSWORD = 'qaz123456'
 EMAIL_USER_TLS = True
 
 
+######################## alipay #######################
+AAP_ID = '2016092300577123'
+ALI_PAY_URL = 'https://openapi.alipaydev.com/gateway.do'
+# ALI_PAY_URL = 'https://openapi.alipay.com/gateway.do'  # 上线用
+APP_PRIVATE_STRING = open(os.path.join(BASE_DIR, 'alipaykey/app_private_key.pem')).read()
+APP_PUBLIC_STRING = open(os.path.join(BASE_DIR, 'alipaykey/app_public_key.pem')).read()
 
+######################## alipay #######################
 
 
 
